@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ABC Adventure</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bg"></div>
+<div id="fx"></div>
+<div id="prize"></div>
+
+<!-- HOME -->
+<section id="home" class="screen active">
+  <div class="critters"><span>🐶</span><span>🐱</span><span>🐼</span><span>🦊</span></div>
+  <div class="talk"><div class="bubble" id="bubble">Hi! Tap me! 👋</div><div class="mascot" id="mascot">🐘</div></div>
+  <h1>ABC<br>Adventure</h1>
+  <p class="sub">Learn • Play • Discover!</p>
+  <div class="wins"></div>
+  <button class="btn big pink" data-go="menu">▶ PLAY</button>
+  <div class="grid2">
+    <button class="btn tile blue" data-go="learn">🔤 LEARN</button>
+    <button class="btn tile green" data-go="write">✏️ WRITE</button>
+    <button class="btn tile yellow" data-go="shop">🛍️ PENS</button>
+    <button class="btn tile pink" data-go="color">🎨 COLOR</button>
+    <button class="btn tile purple wide" data-go="stickers">📒 STICKERS</button>
+  </div>
+  <button class="icon-btn" data-go="settings" aria-label="Settings">⚙️</button>
+</section>
+
+<!-- PLAY MENU -->
+<section id="menu" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <h2>Pick a game</h2>
+  <button class="btn big pink" data-mode="letter">🔤 Letter Quiz</button>
+  <button class="btn big green" data-mode="picture">🖼️ Picture Quiz</button>
+  <button class="btn big purple" data-mode="listen">👂 Listen &amp; Choose</button>
+</section>
+
+<!-- LEARN -->
+<section id="learn" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <div class="count" id="learnCount"></div>
+  <div class="card">
+    <div class="giant" id="learnLetter">A</div>
+    <div class="emoji" id="learnEmoji">🍎</div>
+    <div class="word" id="learnWord">APPLE</div>
+    <div class="line" id="learnLine"></div>
+    <div class="line" id="learnSound"></div>
+  </div>
+  <div class="row">
+    <button class="btn round blue" id="prev" aria-label="Previous">◀</button>
+    <button class="btn round yellow" id="speak" aria-label="Speak">🔊</button>
+    <button class="btn round blue" id="next" aria-label="Next">▶</button>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section id="color" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <div class="count" id="colorHint"></div>
+  <div class="card">
+    <div id="colorArt"></div>
+    <div class="word" id="colorTitle"></div>
+  </div>
+  <div class="choices" id="colorChoices"></div>
+  <div class="row">
+    <button class="btn round blue" id="cPrev" aria-label="Previous picture">◀</button>
+    <button class="btn round yellow" id="cPick" aria-label="Choose letter">🔤</button>
+    <button class="btn round blue" id="cNext" aria-label="Next picture">▶</button>
+  </div>
+</section>
+
+<!-- COLOR PICKER -->
+<section id="colorpick" class="screen">
+  <button class="icon-btn left" data-go="color" aria-label="Back">⬅️</button>
+  <h2>Pick a picture</h2>
+  <div id="pickGrid"></div>
+</section>
+
+<!-- STICKERS -->
+<section id="stickers" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <h2>Sticker Book</h2>
+  <div class="wins" id="stickerCount"></div>
+  <div id="stickerGrid"></div>
+  <button class="btn big purple" data-go="cert">🎓 MY CERTIFICATE</button>
+</section>
+
+<!-- CERTIFICATE -->
+<section id="cert" class="screen">
+  <button class="icon-btn left" data-go="stickers" aria-label="Back">⬅️</button>
+  <div class="cert" id="certCard">
+    <div class="cstar">🏅</div>
+    <div class="ct">Certificate of Awesome</div>
+    <div>Presented to</div>
+    <input id="certName" maxlength="14" placeholder="Type your name">
+    <div id="certInfo"></div>
+    <div id="certStickers"></div>
+  </div>
+  <button class="btn big green" id="printCert">🖨️ PRINT</button>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <h2>Pen Shop</h2>
+  <div class="wins"></div>
+  <div id="shopList"></div>
+</section>
+
+<!-- WRITE -->
+<section id="write" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <div class="count" id="writeHint"></div>
+  <div class="wins"></div>
+  <div id="penBar"></div>
+  <div id="padWrap">
+    <canvas id="pad" width="400" height="400"></canvas>
+    <div id="penTip"><span class="pe">✏️</span><i id="penDot"></i></div>
+  </div>
+  <div class="row">
+    <button class="btn round blue" id="wPrev" aria-label="Previous">◀</button>
+    <button class="btn round yellow" id="wClear" aria-label="Erase">🧽</button>
+    <button class="btn round green" id="wDone" aria-label="Done">✅</button>
+    <button class="btn round blue" id="wNext" aria-label="Next">▶</button>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="screen">
+  <button class="icon-btn left" data-go="menu" aria-label="Back">⬅️</button>
+  <div class="hud"><span id="qNum">Question 1 / 10</span><span id="score">⭐ 0</span></div>
+  <div class="bar"><i id="barFill"></i></div>
+  <div class="card">
+    <div class="pal" id="pal">😺</div>
+    <div class="prompt" id="prompt"></div>
+    <div class="emoji" id="qEmoji"></div>
+    <button class="btn round yellow" id="replay" aria-label="Hear again">🔊</button>
+    <div class="feedback" id="feedback">&nbsp;</div>
+  </div>
+  <div class="choices" id="choices"></div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="screen">
+  <div class="mascot">🏆</div>
+  <h2>Great job!</h2>
+  <p class="sub" id="resultText"></p>
+  <div class="stars" id="resultStars"></div>
+  <div id="resultPrizes"></div>
+  <button class="btn big pink" id="again">🔁 PLAY AGAIN</button>
+  <button class="btn big blue" data-go="learn">🔤 LEARN ABC</button>
+  <button class="btn big green" data-go="home">🏠 HOME</button>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="screen">
+  <button class="icon-btn left" data-go="home" aria-label="Home">🏠</button>
+  <h2>Settings</h2>
+  <button class="btn big yellow" id="tglSound">🔔 Sounds: ON</button>
+  <button class="btn big yellow" id="tglVoice">🗣️ Voice: ON</button>
+  <button class="btn big yellow" id="tglVoiceStyle">🎤 Voice</button>
+  <button class="btn big yellow" id="tglSpeed">🐢 Speed</button>
+  <button class="btn big yellow" id="tglMusic">🎵 Music: ON</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
